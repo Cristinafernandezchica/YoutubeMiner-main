@@ -3,12 +3,10 @@ package aiss.youtubeminer.service;
 import aiss.youtubeminer.model.comment.Comment;
 import aiss.youtubeminer.model.comment.CommentSearch;
 import aiss.youtubeminer.model.videoSnippet.VideoSnippet;
-import aiss.youtubeminer.model.videoSnippet.VideoSnippetDetails;
+import aiss.youtubeminer.model.videoSnippet.VideoSnippetSearch;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.*;
 
 import java.util.List;
 
@@ -19,54 +17,16 @@ public class CommentService {
     RestTemplate restTemplate;
 
 
-    @Autowired
-    VideoService videoService;
-
-
-    /*
-    @Autowired
-    VideoService videoService;
-    */
-
-    /*
-     public List<Comment> findAll(String channelId, String videoId){
-         // Se deberia de hacer llamada al video a traves de estos datos
-         // y despues acceder a commentThread
-        List<Comment> comments;
+    public List<Comment> findAllComments(String id_channel, String id_video, Integer maxComments){
+        List<Comment> comments = null;
         String token = "AIzaSyDOQqDqyCRvWwCmHqciyqrg8PtVywgNKlI";
-        String uri = "https://youtube.googleapis.com/youtube/v3/commentThreads?key="
-            + token + "&videoId=" + "&part=snippet";
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity<CommentSearch> request = new HttpEntity<>(null,headers);
-        ResponseEntity<CommentSearch> response = restTemplate.exchange
-            (uri, HttpMethod.GET,request,CommentSearch.class);
-        CommentSearch commentSearch = response.getBody();
+        String uri = "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId="+id_video+"&maxResults="+maxComments+"&key="+token;
+        CommentSearch commentSearch = restTemplate.getForObject(uri, CommentSearch.class);
         comments = commentSearch.getItems();
-
-        return comments;
-     }
-
-     */
-
-
-    public List<Comment> findAll(String channelId, String videoId){
-        VideoSnippet video = videoService.findOne1(channelId, videoId);
-        List<Comment> comments = video.getComments();
         return comments;
     }
 
 
 
-    /*
-    Comment comment = null;
-    headers.set("Authorization","Bearer " + token);
-    HttpEntity<Channel> request = new HttpEntity<>(null,headers);
-    ResponseEntity<Channel> response = restTemplate.exchange
-            (uri, HttpMethod.GET,request,Channel.class);
-    channel = response.getBody();
-
-
-        return channel;
-*/
 
 }

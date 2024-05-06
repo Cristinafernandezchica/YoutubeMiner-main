@@ -1,11 +1,9 @@
 package aiss.youtubeminer.controller;
 
 import aiss.youtubeminer.transformer.ChannelTrans;
-import aiss.youtubeminer.transformer.VideoTrans;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import aiss.youtubeminer.service.ChannelService;
 import aiss.youtubeminer.transformer.ChannelTransformer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpMethod;
