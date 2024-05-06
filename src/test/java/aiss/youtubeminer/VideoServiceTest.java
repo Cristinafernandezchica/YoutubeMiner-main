@@ -21,16 +21,16 @@ public class VideoServiceTest {
 
     @Test
     void findAllVideos() {
-        List<VideoSnippet> videos = videoService.findAllVideos("UC4pNDofN0Xh-z2bhh62g8Ow");
+        List<VideoSnippet> videos = videoService.findAllVideos("UC4pNDofN0Xh-z2bhh62g8Ow", 10, 10);
         assertFalse(videos == null,"No se han encontrado los videos");
         System.out.println(videos);
     }
 
     @Test
-    void findOne() {
-        VideoSnippetDetails videoSnippetDetails = videoService.findOne("UC4pNDofN0Xh-z2bhh62g8Ow", "Fv1W6X-X1d0");
-        assertFalse(videoSnippetDetails == null,"No se ha encontrado el video");
-        System.out.println(videoSnippetDetails);
+    void findOne1() {
+        VideoSnippet videoSnippet = videoService.findOne1("UC4pNDofN0Xh-z2bhh62g8Ow", "Fv1W6X-X1d0");
+        assertFalse(videoSnippet == null,"No se ha encontrado el video");
+        System.out.println(videoSnippet);
     }
 
 

@@ -74,10 +74,10 @@ public class Caption {
         sb.append("language");
         sb.append('=');
         sb.append(((this.language == null)?"<null>":this.language));
-        //sb.append(',');
-        //sb.append("snippet");
-        //sb.append('=');
-        //sb.append(((this.snippet == null)?"<null>":this.snippet));
+        sb.append(',');
+        sb.append("snippet");
+        sb.append('=');
+        sb.append(((this.snippet == null)?"<null>":this.snippet));
         if (sb.charAt((sb.length()- 1)) == ',') {
             sb.setCharAt((sb.length()- 1), ']');
         } else {

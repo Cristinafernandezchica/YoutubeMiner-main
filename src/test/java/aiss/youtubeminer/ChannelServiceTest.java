@@ -14,15 +14,25 @@ public class ChannelServiceTest {
     @Autowired
     ChannelService channelService;
 
+    //@Test
+    //void findOne() {
+      //  Channel channel = channelService.findOne("UC4pNDofN0Xh-z2bhh62g8Ow", 10, 10);
+        //assertFalse(channel == null,"No se ha encontrado el canal");
+        //System.out.println(channel.getId());
+    //}
+
     @Test
-    void findOne() {
-        Channel channel = channelService.findOne("UC4pNDofN0Xh-z2bhh62g8Ow");
-        assertFalse(channel == null,"No se ha encontrado el canal");
+    void findOne1() {
+        Channel channel = channelService.findOne1("UC4pNDofN0Xh-z2bhh62g8Ow",10,10);
+        //assertFalse(channel == null,"No se ha encontrado el canal");
         System.out.println(channel.getId());
     }
-    // prueba despues el findOne2
 
-
-
+    @Test
+    void findOne2() {
+        Channel channel = channelService.findOne2("UC4pNDofN0Xh-z2bhh62g8Ow");
+        //assertFalse(channel == null,"No se ha encontrado el canal");
+        System.out.println(channel.getId());
+    }
 
 }

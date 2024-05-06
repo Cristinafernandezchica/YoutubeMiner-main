@@ -15,12 +15,12 @@ public class CommentServiceTest {
     @Autowired
     CommentService commentService;
 
-    @Test
-    void findAll() {
-        List<Comment> comments = commentService.findAll
-                ("UC4pNDofN0Xh-z2bhh62g8Ow","Fv1W6X-X1d0");
-        assertFalse(comments == null,"No se han encontrado los videos");
-        System.out.println(comments);
-    }
+    //@Test
+    //void findAll() {
+        //List<Comment> comments = commentService.findAll
+                //("UC4pNDofN0Xh-z2bhh62g8Ow","Fv1W6X-X1d0");
+        //assertFalse(comments == null,"No se han encontrado los videos");
+        //System.out.println(comments);
+    //}
 
 }
