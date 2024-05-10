@@ -1,5 +1,6 @@
 package aiss.youtubeminer.service;
 
+import aiss.youtubeminer.exceptions.CommentException;
 import aiss.youtubeminer.model.channel.Channel;
 import aiss.youtubeminer.model.channel.ChannelSearch;
 import aiss.youtubeminer.model.channel.ChannelSnippet;
@@ -18,13 +19,14 @@ public class VideoService {
     RestTemplate restTemplate;
 
 
-    public List<VideoSnippet> findAllVideos(String id){
-        List<VideoSnippet> videos = null;
-        String token = "AIzaSyDOQqDqyCRvWwCmHqciyqrg8PtVywgNKlI";
-        String uri = "https://www.googleapis.com/youtube/v3/search?key="+token+"&part=snippet&channelId="+id+"&type=video";
-        VideoSnippetSearch videoSnippetSearch = restTemplate.getForObject(uri, VideoSnippetSearch.class);
-        videos = videoSnippetSearch.getItems();
-        return videos;
+    public List<VideoSnippet> findAllVideos(String id) throws CommentException{
+            List<VideoSnippet> videos = null;
+            String token = "AIzaSyDOQqDqyCRvWwCmHqciyqrg8PtVywgNKlI";
+                String uri = "https://www.googleapis.com/youtube/v3/search?key=" + token + "&part=snippet&channelId=" + id + "&type=video";
+            VideoSnippetSearch videoSnippetSearch = restTemplate.getForObject(uri, VideoSnippetSearch.class);
+            videos = videoSnippetSearch.getItems();
+            return videos;
+
     }
 
 

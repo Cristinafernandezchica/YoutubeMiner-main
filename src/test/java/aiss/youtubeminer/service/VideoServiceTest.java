@@ -1,6 +1,7 @@
 package aiss.youtubeminer.service;
 
 
+import aiss.youtubeminer.exceptions.CommentException;
 import aiss.youtubeminer.model.channel.Channel;
 import aiss.youtubeminer.model.videoSnippet.VideoSnippet;
 import aiss.youtubeminer.service.VideoService;
@@ -17,10 +18,12 @@ public class VideoServiceTest {
     VideoService videoService;
 
     @Test
-    void findAllVideos() {
+    void findAllVideos() throws CommentException {
         List<VideoSnippet> videos = videoService.findAllVideos("UC4pNDofN0Xh-z2bhh62g8Ow");
         //assertFalse(channel == null,"No se ha encontrado el canal");
         System.out.println(videos);
     }
+
+
 
 }

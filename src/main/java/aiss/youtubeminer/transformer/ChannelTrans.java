@@ -20,7 +20,7 @@ public class ChannelTrans {
     private String createdTime;
 
     @JsonProperty("videos")
-    private List<VideoSnippet> videos;
+    private List<VideoTrans> videos;
 
     public ChannelTrans() {
         this.videos = new ArrayList<>();
@@ -58,11 +58,11 @@ public class ChannelTrans {
         this.createdTime = createdTime;
     }
 
-    public List<VideoSnippet> getVideos() {
+    public List<VideoTrans> getVideos() {
         return videos;
     }
 
-    public void setVideos(List<VideoSnippet> videos) {
+    public void setVideos(List<VideoTrans> videos) {
         this.videos = videos;
     }
 

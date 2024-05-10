@@ -1,5 +1,6 @@
 package aiss.youtubeminer.service;
 
+import aiss.youtubeminer.exceptions.CommentException;
 import aiss.youtubeminer.model.comment.Comment;
 import aiss.youtubeminer.service.CommentService;
 import org.junit.jupiter.api.Test;
@@ -14,8 +15,9 @@ public class CommentServiceTest {
     @Autowired
     CommentService commentService;
 
+
     @Test
-    void findAllComments() {
+    void findAllComments() throws CommentException {
         List<Comment> comentarios = commentService.findAllComments("UC4pNDofN0Xh-z2bhh62g8Ow", "Y6GgkoAguwc", 10);
         //assertFalse(channel == null,"No se ha encontrado el canal");
         System.out.println(comentarios);

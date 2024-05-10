@@ -15,9 +15,12 @@ public class ChannelTransformer {
     RestTemplate restTemplate;
 
     public ChannelTrans transform(Channel channel){
+
+        List<VideoTrans> listaVideos = new ArrayList<>();
+        listaVideos = transformVideos(channel.getVideos());
         ChannelTrans videoChannel = new ChannelTrans();
         videoChannel.setId(channel.getId());
-        videoChannel.setVideos(channel.getVideos());
+        videoChannel.setVideos(listaVideos);
         videoChannel.setName(channel.getSnippet().getTitle());
         videoChannel.setDescription(channel.getSnippet().getDescription());
         videoChannel.setCreatedTime(channel.getSnippet().getPublishedAt());
