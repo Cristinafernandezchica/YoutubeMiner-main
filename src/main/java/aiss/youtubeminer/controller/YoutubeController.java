@@ -1,5 +1,6 @@
 package aiss.youtubeminer.controller;
 
+import aiss.youtubeminer.service.ChannelService;
 import aiss.youtubeminer.transformer.ChannelTrans;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -26,7 +27,7 @@ public class YoutubeController {
                               @RequestParam(required = false, defaultValue = "10") Integer maxVideos,
                               @RequestParam(required = false, defaultValue = "10") Integer maxComments) {
         //Channel newChannel = channelService.findOne1(id, maxVideos, maxComments);
-        Channel newChannel = channelService.findOne1(id, maxVideos, maxComments);
+        Channel newChannel = channelService.findOneChannel3(id, maxVideos, maxComments);
         ChannelTrans videoChannel = channelTransformer.transform(newChannel);
         String uri = "http://localhost:8080/videominer/channels";
         HttpEntity<ChannelTrans> request = new HttpEntity<>(videoChannel);
@@ -35,5 +36,24 @@ public class YoutubeController {
         ChannelTrans createdChannel = responseEx.getBody();
         return createdChannel;
     }
+
+
+    @GetMapping("/{id}")
+    public Channel getChannel(@PathVariable String id, @RequestParam(required = false, defaultValue = "10") Integer maxVideos,
+                              @RequestParam(required = false, defaultValue = "10") Integer maxComments){
+        Channel channel = channelService.findOneChannel3(id, maxVideos, maxComments);
+        return channel;
+    }
+
+
+    /*
+    @GetMapping("/{id}")
+    public ChannelTrans getChannel(@PathVariable String id, @RequestParam(required = false, defaultValue = "10") Integer maxVideos,
+                              @RequestParam(required = false, defaultValue = "10") Integer maxComments){
+        Channel channel = channelService.findOneChannel3(id, maxVideos, maxComments);
+        ChannelTrans videoChannel = channelTransformer.transform(channel);
+        return videoChannel;
+    }
+    */
 
 }

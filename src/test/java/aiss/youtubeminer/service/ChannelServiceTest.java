@@ -25,6 +25,19 @@ public class ChannelServiceTest {
         //assertFalse(channel == null,"No se ha encontrado el canal");
         System.out.println(channel);
     }
+    @Test
+    void findOneChannel2() {
+        Channel channel = channelService.findOneChannel2("UC4pNDofN0Xh-z2bhh62g8Ow",10,10);
+        //assertFalse(channel == null,"No se ha encontrado el canal");
+        System.out.println(channel);
+    }
+
+    @Test
+    void findOneChannel3() {
+        Channel channel = channelService.findOneChannel3("UC4pNDofN0Xh-z2bhh62g8Ow",10,10);
+        //assertFalse(channel == null,"No se ha encontrado el canal");
+        System.out.println(channel);
+    }
 
 
 }
