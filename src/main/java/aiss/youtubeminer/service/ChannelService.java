@@ -33,30 +33,14 @@ public class ChannelService {
     @Autowired
     CaptionService captionService;
 
+    String token = "AIzaSyDOQqDqyCRvWwCmHqciyqrg8PtVywgNKlI";
 
-
-    public Channel findOneChannel2(String id, Integer maxVideos, Integer maxComments){
-        List<Channel> channels = null;
-        String token = "AIzaSyDOQqDqyCRvWwCmHqciyqrg8PtVywgNKlI";
-        String uri = "https://youtube.googleapis.com/youtube/v3/channels?id="
-                + id +"&key=" + token + "&part=snippet";
-        ChannelSearch channelSearch = restTemplate.getForObject(uri, ChannelSearch.class);
-        channels = channelSearch.getItems();
-        Channel res = channels.get(0);
-        res.setVideos(res.getVideos().stream().limit(maxVideos).toList());
-        for(VideoSnippet v: res.getVideos()){
-            v.setComments(v.getComments().stream().limit(maxComments).toList());
-        }
-        return res;
-    }
-
-
-    public Channel findOneChannel3(String id, Integer maxVideos, Integer maxComments)
+    public Channel findOneChannel(String id, Integer maxVideos, Integer maxComments)
                     throws NotFoundException, CommentException {
 
                 Channel channel = null;
                 try {
-                    channel = findOneChannel(id);
+                    channel = findOneChannelAux(id);
                 }catch (Exception e){
 
                     throw new NotFoundException();
@@ -65,20 +49,19 @@ public class ChannelService {
                 List<VideoSnippet> videos = videoService.findAllVideos(id).stream().limit(maxVideos).toList();
                 for (VideoSnippet v : videos) {
                     try {
-                        v.setComments(commentService.findAllComments(id, v.getId().getVideoId(), maxComments));
+                        v.setComments(commentService.findAllComments(v.getId().getVideoId(), maxComments));
                     }catch (Exception e){
                         v.setComments(new ArrayList<>());
                      }
-                    v.setCaptions(captionService.findAllCaptions(id, v.getId().getVideoId()));
+                    v.setCaptions(captionService.findAllCaptions(v.getId().getVideoId()));
                 }
                 channel.setVideos(videos);
                 return channel;
 
     }
 
-    public Channel findOneChannel(String id) throws NotFoundException {
+    public Channel findOneChannelAux(String id) throws NotFoundException {
         List<Channel> channels = null;
-        String token = "AIzaSyDOQqDqyCRvWwCmHqciyqrg8PtVywgNKlI";
         String uri = "https://youtube.googleapis.com/youtube/v3/channels?id="
                 + id +"&key=" + token + "&part=snippet";
         try {

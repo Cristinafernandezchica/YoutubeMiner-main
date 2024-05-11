@@ -18,8 +18,7 @@ public class CaptionServiceTest {
 
     @Test
     void findAllCaptions() {
-        List<Caption> captions = captionService.findAllCaptions("UC4pNDofN0Xh-z2bhh62g8Ow", "Y6GgkoAguwc");
-        //assertFalse(channel == null,"No se ha encontrado el canal");
+        List<Caption> captions = captionService.findAllCaptions("Y6GgkoAguwc");
         System.out.println(captions);
     }
 }

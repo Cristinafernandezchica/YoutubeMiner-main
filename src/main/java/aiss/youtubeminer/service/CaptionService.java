@@ -16,9 +16,10 @@ public class CaptionService {
     @Autowired
     RestTemplate restTemplate;
 
-    public List<Caption> findAllCaptions(String id_channel, String id_video){
+    String token = "AIzaSyDOQqDqyCRvWwCmHqciyqrg8PtVywgNKlI";
+
+    public List<Caption> findAllCaptions(String id_video){
         List<Caption> captions = null;
-        String token = "AIzaSyDOQqDqyCRvWwCmHqciyqrg8PtVywgNKlI";
         String uri = "https://www.googleapis.com/youtube/v3/captions?part=snippet&videoId="+id_video+"&key="+token;
         CaptionSearch captionSearch = restTemplate.getForObject(uri, CaptionSearch.class);
         captions = captionSearch.getItems();

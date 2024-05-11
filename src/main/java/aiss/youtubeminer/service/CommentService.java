@@ -17,12 +17,12 @@ public class CommentService {
     @Autowired
     RestTemplate restTemplate;
 
+    String token = "AIzaSyDOQqDqyCRvWwCmHqciyqrg8PtVywgNKlI";
 
-    public List<Comment> findAllComments(String id_channel, String id_video, Integer maxComments)
+    public List<Comment> findAllComments(String id_video, Integer maxComments)
                     throws  CommentException{
         try {
             List<Comment> comments = null;
-            String token = "AIzaSyDOQqDqyCRvWwCmHqciyqrg8PtVywgNKlI";
             String uri = "https://www.googleapis.com/youtube/v3/commentThreads?part=snippet&videoId=" + id_video + "&maxResults=" + maxComments + "&key=" + token;
             CommentSearch commentSearch = restTemplate.getForObject(uri, CommentSearch.class);
             comments = commentSearch.getItems();

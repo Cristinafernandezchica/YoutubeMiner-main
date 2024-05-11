@@ -18,8 +18,7 @@ public class CommentServiceTest {
 
     @Test
     void findAllComments() throws CommentException {
-        List<Comment> comentarios = commentService.findAllComments("UC4pNDofN0Xh-z2bhh62g8Ow", "Y6GgkoAguwc", 10);
-        //assertFalse(channel == null,"No se ha encontrado el canal");
+        List<Comment> comentarios = commentService.findAllComments("Y6GgkoAguwc", 10);
         System.out.println(comentarios);
     }
 

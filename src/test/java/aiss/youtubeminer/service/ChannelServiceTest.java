@@ -22,22 +22,14 @@ public class ChannelServiceTest {
 
 
     @Test
-    void findOneChannel() throws NotFoundException {
-        Channel channel = channelService.findOneChannel("UC4pNDofN0Xh-z2bhh62g8Ow");
-        //assertFalse(channel == null,"No se ha encontrado el canal");
-        System.out.println(channel);
-    }
-    @Test
-    void findOneChannel2() {
-        Channel channel = channelService.findOneChannel2("UC4pNDofN0Xh-z2bhh62g8Ow",10,10);
-        //assertFalse(channel == null,"No se ha encontrado el canal");
+    void findOneChannelAux() throws NotFoundException {
+        Channel channel = channelService.findOneChannelAux("UC4pNDofN0Xh-z2bhh62g8Ow");
         System.out.println(channel);
     }
 
     @Test
-    void findOneChannel3() throws CommentException, NotFoundException {
-        Channel channel = channelService.findOneChannel3("UC4pNDofN0Xh-z2bhh62g8Ow",10,10);
-        //assertFalse(channel == null,"No se ha encontrado el canal");
+    void findOneChannel() throws CommentException, NotFoundException {
+        Channel channel = channelService.findOneChannel("UC4pNDofN0Xh-z2bhh62g8Ow",10,10);
         System.out.println(channel);
     }
 

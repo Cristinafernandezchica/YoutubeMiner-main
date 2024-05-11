@@ -36,7 +36,6 @@ public class YoutubeController {
                               @RequestParam(required = false, defaultValue = "10") Integer maxVideos,
                               @RequestParam(required = false, defaultValue = "10") Integer maxComments) throws CommentException, NotFoundException,
             MaxVideosException, MaxCommentsException {
-        //Channel newChannel = channelService.findOne1(id, maxVideos, maxComments);
 
             if(maxVideos==null || maxVideos<0){
             throw new MaxVideosException();
@@ -44,7 +43,7 @@ public class YoutubeController {
             if(maxComments==null || maxComments<0) {
              throw new MaxCommentsException();
             }
-            Channel newChannel = channelService.findOneChannel3(id, maxVideos, maxComments);
+            Channel newChannel = channelService.findOneChannel(id, maxVideos, maxComments);
             ChannelTrans videoChannel = channelTransformer.transform(newChannel);
             String uri = "http://localhost:8080/videominer/channels";
             HttpEntity<ChannelTrans> request = new HttpEntity<>(videoChannel);
@@ -57,30 +56,17 @@ public class YoutubeController {
 
         }
 
-
-
     @GetMapping("/{id}")
     public Channel getChannel(@PathVariable String id, @RequestParam(required = false, defaultValue = "10") Integer maxVideos,
                               @RequestParam(required = false, defaultValue = "10") Integer maxComments)
                                 throws CommentException, NotFoundException {
         try {
-            Channel channel = channelService.findOneChannel3(id, maxVideos, maxComments);
+            Channel channel = channelService.findOneChannel(id, maxVideos, maxComments);
             return channel;
         }catch (Exception e){
             throw new NotFoundException();
         }
 
     }
-
-
-    /*
-    @GetMapping("/{id}")
-    public ChannelTrans getChannel(@PathVariable String id, @RequestParam(required = false, defaultValue = "10") Integer maxVideos,
-                              @RequestParam(required = false, defaultValue = "10") Integer maxComments){
-        Channel channel = channelService.findOneChannel3(id, maxVideos, maxComments);
-        ChannelTrans videoChannel = channelTransformer.transform(channel);
-        return videoChannel;
-    }
-    */
 
 }
